@@ -100,3 +100,54 @@ tr.even {
 tr:hover {
 	background-color: #ff8e3c15;
 }
+
+.popup {
+	position: absolute;
+	display: inline-block;
+	height: 100vh;
+	width: 50vw;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+}
+
+.popup div {
+	background: cornflowerblue;
+	padding: 3rem;
+	border: 1px solid pink;
+}
+
+.popup.open {
+	pointer-events: all;	
+}
+
+.popup.open div {
+	transform: scale(1);
+}
+
+
+.pop {
+	position: absolute;
+	display: inline-block;
+	height: 100vh;
+	width: 50vw;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+}
+
+.pop fieldset {
+	background: cornflowerblue;
+	padding: 3rem;
+	border: 1px solid pink;
+}
+
+.pop.openform {
+	pointer-events: all;	
+}
+
+.pop.openform fieldset {
+	transform: scale(1);
+}
