@@ -119,7 +119,10 @@ tr:hover {
 }*/
 
 .popup.open {
-	pointer-events: all;	
+	pointer-events: all;
+	background-color: #d9376e;
+	height: 5rem;
+	width: 100vw;	
 }
 
 .popup.open div {

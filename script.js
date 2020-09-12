@@ -2,9 +2,9 @@ import faker from 'faker';
 
 
 const tbody = document.querySelector('tbody');
-// const form = document.querySelector('form');
+const form = document.querySelector('form');
 
-let persons = Array.from({ length: 10 }, () => {
+let persons = Array.from({ length: 2 }, () => {
 	return {
 		id: faker.random.uuid(),
 		lastName: faker.name.lastName(),
@@ -44,9 +44,9 @@ const displayList = data => {
 const editPartner = (e) => {
 		const editButton = e.target.closest('.edit');
 		if (editButton) {
-			const popup = document.createElement('form');
-			popup.classList.add('popup');
-			popup.insertAdjacentHTML('afterbegin', `
+			const popupForm = document.createElement('form');
+			popupForm.classList.add('formpopup');
+			popupForm.insertAdjacentHTML('afterbegin', `
 				<form>
 				   <label for="text">Last Name</label>
 				   <input id="name" name="name" type="text"/>
@@ -59,15 +59,15 @@ const editPartner = (e) => {
 				   <label for="number">Phone number</label>
 				   <input id="number" name="number" type="number"/>
 				   <div class= "form-button">
-			        <button class="savebtn">Save</button>
-					<button class=>Cancel</button>
-					</div>
+			          <button class="savebtn">Save</button>
+					  <button class=>Cancel</button>
+				    </div>
 				</form>
 			`
 			);
-			console.log(popup);
-			document.body.appendChild(popup);
-		    popup.classList.add('showform');
+			console.log(popupForm);
+			document.body.appendChild(popupForm);
+		    formpopup.classList.add('showform');
 		}
 	// code edit function here
 };
@@ -77,37 +77,54 @@ const editPartnerPopup = (people) => {
 };
 
 const deletePartner = (e) => {
+	// code delete function here
 	const button = e.target.closest('.delete');
 	if (button) {
+		const personToDelete = e.target.closest("tr");
+		console.log(personToDelete);
+		const id = personToDelete.dataset.id;
+		console.log(id);
+		deleteDeletePopup(id);
+	}
+};
+
+
+function deleteDeletePopup(id) {
+	// create confirmation popup here
 		const popup = document.createElement('div');
 		popup.classList.add("popup");
 		popup.insertAdjacentHTML('afterbegin', `
-		  <div>
-			<button><a href="/delete" class="delete" data-confirm="Are you sure to delete this item?">Delete</a></button>
-			<button>Cancel</button>
+		  	<p>Are you sure to delete this item</p>
 		  </div>
 		`);
+
+		//create delete button
+		const deleteBtn = document.createElement("button");
+		deleteBtn.textContent = "Delete";
+		popup.appendChild(deleteBtn);
+
+		// listen for a click in this dlete button
+		deleteBtn.addEventListener('click', e => {
+			const deletedPerson = persons.filter(person => person.id !== id);
+			persons = deletedPerson;
+			displayList(persons);
+			// popup.classList.remove('open');
+		});
 		console.log(popup);
 		document.body.appendChild(popup);
 		popup.classList.add('open');
-	}
-	// code delete function here
+		
+		// create cancel button
+		const cancelBtn = document.createElement("button");
+		cancelBtn.textContent = "Cancel";
+		popup.appendChild(cancelBtn);
+		cancelBtn.addEventListener('click', e => {
+			popup.classList.remove('open');
+		});
 };
-
 
 tbody.addEventListener('click', deletePartner);
 tbody.addEventListener('click', editPartner);
-
-function deleteDeletePopup(people) {
-	 const result = confirm ("are u sure to delete this?");
-	  if (result) {
-      result = "You pressed OK!";
-  } else {
-    result = "You pressed Cancel!";
-} 
-	// create confirmation popup here
-};
-
 
 
 displayList(persons);
