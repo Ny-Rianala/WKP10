@@ -112,11 +112,11 @@ tr:hover {
 	align-items: center;
 }
 
-.popup div {
+/*.popup div {
 	background: cornflowerblue;
 	padding: 3rem;
 	border: 1px solid pink;
-}
+}*/
 
 .popup.open {
 	pointer-events: all;	
@@ -151,3 +151,25 @@ tr:hover {
 .pop.openform fieldset {
 	transform: scale(1);
 }
+
+.popup {
+	background-color: grey;
+	position: absolute;
+    height: 50vh;
+    width: 50vw;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    max-width: 400px;
+    margin-left: 300px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.form-button {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
