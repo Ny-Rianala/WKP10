@@ -2,7 +2,7 @@ import faker from 'faker';
 
 
 const tbody = document.querySelector('tbody');
-const form = document.querySelector('form');
+// const div = document.querySelector('form');
 
 let persons = Array.from({ length: 2 }, () => {
 	return {
@@ -41,7 +41,10 @@ const displayList = data => {
 		.join('');
 };
 
+
+
 const editPartner = (e) => {
+	// code edit function here
 		const editButton = e.target.closest('.edit');
 		if (editButton) {
 			const popupForm = document.createElement('form');
@@ -49,15 +52,15 @@ const editPartner = (e) => {
 			popupForm.insertAdjacentHTML('afterbegin', `
 				<form>
 				   <label for="text">Last Name</label>
-				   <input id="name" name="name" type="text"/>
+				   <input type="text"  id="name" name="name" type="text"/>
 				   <label for="text">First Name</label>
-				   <input id="name" name="name" type="text"/>
+				   <input type="text"  id="name" name="name" type="text"/>
 				   <label for="text">Job title</label>
-				   <input id="title" name="title" type="text"/>
+				   <input type="text"  id="title" name="title" type="text"/>
 				   <label for="text">Job area</label>
-				   <input id="area" name="area" type="text"/>
+				   <input type="text" id="area" name="area" type="text"/>
 				   <label for="number">Phone number</label>
-				   <input id="number" name="number" type="number"/>
+				   <input type="number" id="number" name="number" type="text"/>
 				   <div class= "form-button">
 			          <button class="savebtn">Save</button>
 					  <button class=>Cancel</button>
@@ -67,12 +70,12 @@ const editPartner = (e) => {
 			);
 			console.log(popupForm);
 			document.body.appendChild(popupForm);
-		    formpopup.classList.add('showform');
+			popupForm.classList.add('showform');
+
 		}
-	// code edit function here
 };
 
-const editPartnerPopup = (people) => {
+const editPartnerPopup = (people) => { 
 		// create edit popup here
 };
 
@@ -93,22 +96,21 @@ function deleteDeletePopup(id) {
 	// create confirmation popup here
 		const popup = document.createElement('div');
 		popup.classList.add("popup");
-		popup.insertAdjacentHTML('afterbegin', `
-		  	<p>Are you sure to delete this item</p>
-		  </div>
-		`);
+		const text = document.createElement('p');
+		text.textContent = "Are you sure to delete this";
+		popup.appendChild(text);
 
 		//create delete button
 		const deleteBtn = document.createElement("button");
+		
 		deleteBtn.textContent = "Delete";
 		popup.appendChild(deleteBtn);
 
-		// listen for a click in this dlete button
+		// listen for a click in this delete button
 		deleteBtn.addEventListener('click', e => {
 			const deletedPerson = persons.filter(person => person.id !== id);
 			persons = deletedPerson;
 			displayList(persons);
-			// popup.classList.remove('open');
 		});
 		console.log(popup);
 		document.body.appendChild(popup);
